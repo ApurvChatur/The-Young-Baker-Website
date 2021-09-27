@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Title -->
+    {% if title %}
+        <title>The Young Baker - Project Model - {{ title }}</title>
+    {% else %}
+        <title>The Young Baker - Project Model</title>
+    {% endif %}
+
+</head>
+<body>
+    <!-- Header -->
+    {% include 'ProjectModel/extras/header.html' %}
+
+    <!-- Content -->
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Footer -->
+    {% include 'ProjectModel/extras/footer.html' %}
+
+</body>
+</html>

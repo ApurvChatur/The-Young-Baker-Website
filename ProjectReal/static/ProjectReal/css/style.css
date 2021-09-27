@@ -218,7 +218,7 @@ header .icons #menu-bars{
 
 .home .home-slider .slide .content h3{
     color: var(--black);
-    font-size: 7rem;
+    font-size: 6.5rem;
 }
 
 .home .home-slider .slide .content p{
@@ -541,6 +541,13 @@ header .icons #menu-bars{
         height: auto;
         width: 100%;
     }
+
+    .menu .box-container{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(30rem, 1fr));
+        gap: 1.5rem;   
+    }
+    
 }
 
 

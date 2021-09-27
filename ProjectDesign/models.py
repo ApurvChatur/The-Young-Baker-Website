@@ -90,3 +90,17 @@ class Product(models.Model):
                            'slug': self.slug
                        })
 
+    # Product Model
+    def get_home_url(self):
+        return reverse('ProjectModel:home-page')
+
+    def get_products_url(self):
+        return reverse('ProjectModel:products-page')
+
+    def get_product_url(self):
+        return reverse('ProjectModel:product-page',
+                       kwargs={
+                           'slug': self.slug
+                       })
+
+
