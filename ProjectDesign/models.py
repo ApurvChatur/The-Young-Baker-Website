@@ -48,10 +48,39 @@ class Home(models.Model):
                        })
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=20, unique=True, default='Simple Cakes')
+    subtitle = models.CharField(max_length=50, default='Try this simple cake... Yummy...')
+    slug = models.SlugField(unique=True, blank=True)
+
+    # Some Common Methods
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.slug
+
+    def get_class_name(self):
+        return self.__class__.__name__
+
+    # Project Model
+    def get_category_url(self):
+        return reverse('ProjectModel:category-page',
+                       kwargs={
+                           'slug': self.slug
+                       })
+
+
 class Product(models.Model):
     title = models.CharField(max_length=20, unique=True, default='Product Name')
     subtitle = models.CharField(max_length=50, default='Small Description')
     image = models.ImageField(upload_to='Products/', default='default.jpg')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
+    tag = models.CharField(choices=(
+                                ('featured', 'featured'),
+                                ('recent', 'recent'),
+                            ), max_length=20, default='featured')
     slug = models.SlugField(unique=True, blank=True)
 
     # Some Common Methods

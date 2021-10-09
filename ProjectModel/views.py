@@ -1,27 +1,47 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from ProjectDesign.models import (Home,
+                                  Category,
                                   Product,
                                   )
 
 
 def home_view(request):
     home = get_object_or_404(Home, title='The Young Baker')
+    categories = get_list_or_404(Category)
+    featured_products = get_list_or_404(Product, tag='featured')
 
-    template_name = 'ProjectModel/a-home-page.html'
+    template_name = 'ProjectModel/home-page.html'
     context = {
         'title': 'Home',
         'home': home,
+        'categories': categories,
+        'featured_products': featured_products,
+    }
+    return render(request, template_name, context)
+
+
+def category_view(request, slug):
+    categories = get_list_or_404(Category)
+    category = get_object_or_404(Category, slug=slug)
+
+    template_name = 'ProjectModel/category-page.html'
+    context = {
+        'title': category.title,
+        'categories': categories,
+        'category': category,
     }
     return render(request, template_name, context)
 
 
 def products_view(request):
+    categories = get_list_or_404(Category)
     products = Product.objects.all()
 
     template_name = 'ProjectModel/b-products-page.html'
     context = {
         'title': 'Products',
+        'categories': categories,
         'products': products,
     }
     return render(request, template_name, context)
