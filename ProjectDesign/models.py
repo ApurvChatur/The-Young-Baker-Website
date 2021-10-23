@@ -132,4 +132,11 @@ class Product(models.Model):
                            'slug': self.slug
                        })
 
+    # Project Real
+    def get_real_product_url(self):
+        return reverse('ProjectReal:product-page',
+                       kwargs={
+                           'slug': self.slug
+                       })
+
 

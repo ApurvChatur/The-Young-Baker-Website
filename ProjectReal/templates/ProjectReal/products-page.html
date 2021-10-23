@@ -1,0 +1,28 @@
+{% extends 'ProjectReal/extras/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="l-main">
+
+    <!--========== MENU ==========-->
+    <section class="menu section bd-container" id="menu">
+        <span class="section-subtitle">Special</span>
+        <h2 class="section-title">Menu of the week</h2>
+
+        <div class="menu__container bd-grid">
+
+            {% for product in products %}
+            <div class="menu__content">
+                <img src="{{ product.image.url }}" alt="" class="menu__img">
+                <h3 class="menu__name">{{ product.title }}</h3>
+                <span class="menu__detail">{{ product.category.title }}</span>
+                <span class="menu__preci">$22.00</span>
+                <a href="{{ product.get_real_product_url }}" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+</main>
+{% endblock content %}
